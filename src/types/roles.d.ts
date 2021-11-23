@@ -1,0 +1,1 @@
+export type roles = ['user', 'admin'];
