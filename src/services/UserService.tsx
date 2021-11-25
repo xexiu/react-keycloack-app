@@ -5,13 +5,17 @@ const initKeycloak = (onAuthenticatedCallback: Function) => {
         onLoad: 'login-required'
     })
     .then((authenticated: any) => {
-        debugger;
       if (!authenticated) {
         console.log("user is not authenticated..!");
       }
-      onAuthenticatedCallback();
+      return onAuthenticatedCallback();
     })
-    .catch(console.error);
+    .catch(() => {
+      console.log('Please start keyCloack app by running: npm run docker-run');
+      console.log('Error: ', console.error);
+
+      return console.error;
+    });
 };
 
 const doLogin = keycloak.login;
